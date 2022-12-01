@@ -1,9 +1,31 @@
 package org.harrel
 
-fun main(args: Array<String>) {
-    println("Hello World!")
+fun main() {
+    println(pt1())
+    println(pt2())
+}
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun pt1(): Long? {
+    return readToString("/input.data")
+        .split("\r\n\r\n")
+        .maxOfOrNull { elf ->
+            elf.split("\r\n").sumOf { it.toLong() }
+        }
+}
+
+fun pt2(): Long {
+    val sorted = readToString("/input.data")
+        .split("\r\n\r\n")
+        .map { elf ->
+            elf.split("\r\n").sumOf { it.toLong() }
+        }
+        .sortedDescending()
+
+    return sorted[0] + sorted[1] + sorted[2]
+}
+
+fun readToString(file: String): String {
+    return {}::class.java.getResourceAsStream(file)!!
+        .bufferedReader()
+        .readText()
 }

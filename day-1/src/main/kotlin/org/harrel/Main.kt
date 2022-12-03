@@ -7,21 +7,21 @@ fun main() {
 
 fun pt1(): Long? {
     return readToString("/input.data")
-        .split("\r\n\r\n")
+        .split(System.lineSeparator() + System.lineSeparator())
         .maxOfOrNull { elf ->
-            elf.split("\r\n").sumOf { it.toLong() }
+            elf.split(System.lineSeparator()).sumOf { it.toLong() }
         }
 }
 
 fun pt2(): Long {
-    val sorted = readToString("/input.data")
-        .split("\r\n\r\n")
+    return readToString("/input.data")
+        .split(System.lineSeparator() + System.lineSeparator())
         .map { elf ->
-            elf.split("\r\n").sumOf { it.toLong() }
+            elf.split(System.lineSeparator()).sumOf { it.toLong() }
         }
         .sortedDescending()
-
-    return sorted[0] + sorted[1] + sorted[2]
+        .subList(0, 3)
+        .sum()
 }
 
 fun readToString(file: String): String {
